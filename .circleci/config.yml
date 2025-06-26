@@ -1,0 +1,81 @@
+version: 2.1
+
+executors:
+  ruby-executor:
+    docker:
+      - image: cimg/ruby:3.2.2-node
+        environment:
+          RAILS_ENV: test
+          POSTGRES_HOST: postgres
+      - image: cimg/postgres:14.7
+        name: postgres
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: ohana_site_test
+          POSTGRES_PASSWORD: postgres
+    working_directory: ~/app
+
+jobs:
+  setup:
+    executor: ruby-executor
+    steps:
+      - checkout
+
+      - run:
+          name: Install Yarn
+          command: |
+            curl -o- -L https://yarnpkg.com/install.sh | bash
+            echo 'export PATH="$HOME/.yarn/bin:$PATH"' >> $BASH_ENV
+
+      - run:
+          name: Install Ruby dependencies
+          command: |
+            gem install bundler -v 2.4.10
+            bundle _2.4.10_ install --jobs=4 --retry=3
+
+      - run:
+          name: Install JS dependencies
+          command: yarn install
+
+      - run:
+          name: Build JavaScript assets
+          command: yarn build
+
+      - run:
+          name: Precompile Rails assets
+          command: bundle exec rails assets:precompile
+
+      - run:
+          name: Set up database
+          command: bin/rails db:create db:schema:load
+
+  test:
+    executor: ruby-executor
+    steps:
+      - checkout
+      - run: gem install bundler -v 2.4.10
+      - run: bundle _2.4.10_ install
+      - run: yarn install
+      - run: yarn build
+      - run: bundle exec rails assets:precompile
+      - run: bin/rspec
+
+  deploy:
+    executor: ruby-executor
+    steps:
+      - run:
+          name: Trigger Render Deploy
+          command: |
+            curl -X POST https://api.render.com/deploy/srv-d0thl7qdbo4c739n1id0?key=_xE7v0GU4RQ
+
+workflows:
+  version: 2
+  test_app:
+    jobs:
+      - setup
+      - test:
+          requires:
+            - setup
+      - deploy:
+          requires:
+            - test
