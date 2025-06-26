@@ -1,0 +1,105 @@
+<!-- Hero Video Section -->
+<section class="contact-hero">
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    class="hero-video"
+    data-controller="video-reload"
+    data-action="turbo:frame-load->video#reload turbo:load->video#reload"
+  >
+    <source src="<%= asset_path('services.mp4') %>" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="hero-overlay">
+    <h1>Our Services</h1>
+  </div>
+</section>
+
+<!-- Services Intro -->
+<section class="services-intro">
+  <div class="container">
+    <h2>Solving Property Challenges with Purpose</h2>
+    <p>
+      Our work helps organisations align their property strategies with wider goals —
+      from reducing costs and improving ESG performance to enabling hybrid workforces.
+    </p>
+  </div>
+</section>
+
+<!-- Challenge Image Cards (top section) -->
+<section class="challenge-cards">
+  <div class="service-card">
+    <%= image_tag "hybrid-workforce.jpg" %>
+    <h2>Challenge: Hybrid Workforce Confusion</h2>
+    <p>Employees are unsure where to work, space is underused, and productivity is uneven.</p>
+    <h3>Solution: Workplace Strategy</h3>
+    <p>We deliver data-led space planning and behavioural insight to optimise your work environment.</p>
+  </div>
+
+  <div class="service-card">
+    <%= image_tag "cost-pressure.jpg" %>
+    <h2>Challenge: Rising Operational Costs</h2>
+    <p>Leases, utilities, and inefficiencies are placing pressure on your bottom line.</p>
+    <h3>Solution: Portfolio Optimisation</h3>
+    <p>We help reduce estate footprint, consolidate space, and unlock hidden value.</p>
+  </div>
+</section>
+
+<section class="challenge-cards">
+  <div class="service-card">
+    <%= image_tag "inefficient-space.jpg" %>
+    <h2>Rising operational costs or inefficient space</h2>
+    <h3>→ Portfolio Optimisation</h3>
+    <p>Streamline your estate to reduce waste and unlock value across your portfolio.</p>
+  </div>
+
+  <div class="service-card">
+    <%= image_tag "change.jpg" %>
+    <h2>Growth, contraction or change</h2>
+    <h3>→ Portfolio Transformation</h3>
+    <p>Navigate change with tailored strategies to reshape your estate for the future.</p>
+  </div>
+
+  <div class="service-card">
+    <%= image_tag "real-time.jpg" %>
+    <h2>Lack of insight or real-time data</h2>
+    <h3>→ CRE Data & Reporting</h3>
+    <p>Transform decision-making with better data, visibility, and risk control.</p>
+  </div>
+</section>
+
+<section class="service-summary">
+  <div class="summary-container">
+    <div class="summary-text">
+      <h2>More Ways We Help</h2>
+      <table>
+        <thead>
+        <tr>
+          <th>Challenge</th>
+          <th>Our Solution</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>New operating model or M&A</td>
+          <td>Portfolio Transformation</td>
+        </tr>
+        <tr>
+          <td>Access to talent</td>
+          <td>Location Strategy</td>
+        </tr>
+        <tr>
+          <td>Unclear investment strategy</td>
+          <td>Capital Planning</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="summary-image">
+      <%= image_tag "service-summary.jpg", alt: "Strategic Planning" %>
+    </div>
+  </div>
+</section>
+

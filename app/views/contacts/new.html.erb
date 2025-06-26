@@ -1,0 +1,87 @@
+<!-- Hero Video -->
+<section class="contact-hero">
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    class="hero-video"
+    data-controller="video-reload"
+    data-action="turbo:frame-load->video#reload turbo:load->video#reload"
+  >
+    <source src="<%= asset_path('contact.mp4') %>" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="hero-overlay">
+    <h1>Get in Touch</h1>
+  </div>
+</section>
+
+<!-- Contact Form -->
+<section class="contact-form-wrapper">
+  <div class="contact-layout">
+    <div class="form-container">
+      <% if flash[:notice] %>
+        <div class="flash flash-notice" role="alert" aria-live="assertive"><%= flash[:notice] %></div>
+      <% elsif flash[:alert] %>
+        <div class="flash flash-alert" role="alert" aria-live="assertive"><%= flash[:alert] %></div>
+      <% end %>
+
+      <h2>Contact Us</h2>
+      <p>Contact us by email or via LinkedIn. We collect only the details we need to respond.</p>
+
+      <%= form_with model: @contact, local: true do |form| %>
+        <div class="form-group">
+          <%= form.label :name, "Your Name" %>
+          <%= form.text_field :name, class: "form-control" %>
+          <% if @contact.errors[:name].any? %>
+            <div class="field-error"><%= @contact.errors[:name].first %></div>
+          <% end %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :email, "Your Email" %>
+          <%= form.email_field :email, class: "form-control" %>
+          <% if @contact.errors[:email].any? %>
+            <div class="field-error"><%= @contact.errors[:email].first %></div>
+          <% end %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :subject, "Subject" %>
+          <%= form.text_field :subject, class: "form-control" %>
+          <% if @contact.errors[:subject].any? %>
+            <div class="field-error"><%= @contact.errors[:subject].first %></div>
+          <% end %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :message, "Your Message" %>
+          <%= form.text_area :message, rows: 5, class: "form-control" %>
+          <% if @contact.errors[:message].any? %>
+            <div class="field-error"><%= @contact.errors[:message].first %></div>
+          <% end %>
+        </div>
+
+        <%= form.submit "Send Message", class: "btn-submit" %>
+      <% end %>
+    </div>
+
+    <!-- Spacer to preserve layout -->
+    <div class="contact-side-spacer"></div>
+  </div>
+</section>
+
+
+<!-- Cookie Banner -->
+<div id="cookie-banner" data-controller="cookie-banner" class="cookie-banner">
+  <div class="cookie-content">
+    <p>We use cookies to understand where our visitors come from. No personal data is collected.</p>
+    <div class="cookie-buttons">
+      <button class="accept" data-action="click->cookie-banner#accept">Accept</button>
+      <button class="decline" data-action="click->cookie-banner#decline">Decline</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

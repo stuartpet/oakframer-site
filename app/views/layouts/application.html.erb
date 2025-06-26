@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= content_for?(:title) ? yield(:title) : "placeholder" %></title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <%= favicon_link_tag 'favicon.png', type: 'image/png' %>
+
+  <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<header class="navbar">
+  <nav class="nav-container" data-controller="menu">
+    <div class="logo">
+      <%= image_tag "logo-placeholder.jpg", alt: "Site Logo" %>
+    </div>
+
+    <!-- Burger button -->
+    <div class="burger-menu" data-action="click->menu#toggle" data-menu-target="button">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- Navbar links -->
+    <div class="navbar-links" data-menu-target="menu">
+      <%= link_to "Home", root_path(anchor: "home") %>
+      <%= link_to "About", root_path(anchor: "about") %>
+      <%= link_to "Services", root_path(anchor: "services") %>
+      <%= link_to "Projects", root_path(anchor: "projects") %>
+      <%= link_to "Contact", contacts_path %>
+    </div>
+
+    <div class="mobile-menu-overlay" data-menu-target="overlay" data-action="click->menu#toggle"></div>
+
+    <div class="navbar-right">
+      <%= link_to " ", "https://www.linkedin.com/in/kate-mullins-4209719/", target: "_blank", rel: "noopener", class: "linkedin-icon" %>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <%= yield %>
+</main>
+
+<footer class="footer">
+  <p>&copy; <%= Time.current.year %> placeholder. All rights reserved.</p>
+  <p class="footer-note">Created with care by Studio P Design</p>
+  <%= link_to "Privacy Statement", privacy_path, class: "footer-link" %>
+</footer>
+
+<div id="cookie-banner" data-controller="cookie-banner" class="cookie-banner">
+  <div class="cookie-content">
+    <p>We use cookies to understand where our visitors come from. No personal data is collected.</p>
+    <div class="cookie-buttons">
+      <button class="accept" data-action="click->cookie-banner#accept">Accept</button>
+      <button class="decline" data-action="click->cookie-banner#decline">Decline</button>
+    </div>
+  </div>
+</div>
+
+<a href="#" class="scroll-to-top" data-action="click->scroll#toTop">↑</a>
+</body>
+</html>

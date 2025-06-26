@@ -1,0 +1,20 @@
+<h1 style="font-size: 2rem; color: #333; margin-bottom: 1rem;">Recent Site Visits</h1>
+
+<table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif;">
+  <thead>
+  <tr style="background-color: #E0D9D2;">
+    <th style="text-align: left; padding: 10px;">Time</th>
+    <th style="text-align: left; padding: 10px;">Referrer</th>
+    <th style="text-align: left; padding: 10px;">User Agent</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @site_visits.each do |visit| %>
+    <tr style="border-bottom: 1px solid #ccc;">
+      <td style="padding: 10px;"><%= visit.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+      <td style="padding: 10px;"><%= visit.referrer.presence || "Direct / None" %></td>
+      <td style="padding: 10px;"><%= visit.user_agent %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

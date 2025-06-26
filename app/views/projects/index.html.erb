@@ -1,0 +1,57 @@
+<section class="contact-hero">
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    class="hero-video"
+    data-controller="video-reload"
+    data-action="turbo:frame-load->video#reload turbo:load->video#reload"
+  >
+    <source src="<%= asset_path('projects.mp4') %>" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="hero-overlay">
+    <h1>Projects</h1>
+  </div>
+</section>
+
+<section class="homepage-section">
+  <div class="homepage-text">
+    <h2>National Estate Strategy for NHS</h2>
+    <p>We developed and delivered a full property strategy for multiple NHS trusts, optimising estate footprint, enabling clinical expansion, and aligning future service needs across departments.</p>
+  </div>
+  <div class="homepage-image">
+    <%= image_tag "services.jpg", alt: "NHS project" %>
+  </div>
+</section>
+
+<section class="homepage-section">
+  <div class="homepage-image">
+    <%= image_tag "homes-england.jpg", alt: "Homes England project" %>
+  </div>
+  <div class="homepage-text">
+    <h2>Homes England: Development Advisory</h2>
+    <p>Our team advised on strategic acquisitions, master planning, and site viability for long-term regeneration initiatives supporting affordable housing targets.</p>
+  </div>
+</section>
+
+<section class="homepage-section">
+  <div class="homepage-text">
+    <h2>Local Authority Portfolio Review</h2>
+    <p>We completed a comprehensive asset review across multiple council-owned properties, identifying underused assets and advising on capital release and re-use strategies.</p>
+  </div>
+  <div class="homepage-image">
+    <%= image_tag "services.jpg", alt: "Local government office" %>
+  </div>
+</section>
+
+<section class="homepage-section">
+  <div class="homepage-image">
+    <%= image_tag "why_placeholder.jpg", alt: "University campus" %>
+  </div>
+  <div class="homepage-text">
+    <h2>Higher Education Estate Planning</h2>
+    <p>Supporting a major UK university, we facilitated campus consolidation, planning engagement, and the delivery of purpose-built learning environments.</p>
+  </div>
+</section>

@@ -1,0 +1,68 @@
+<section class="hero" id="top">
+  <video
+    class="hero-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    data-controller="video-reload"
+    data-action="turbo:frame-load->video#reload turbo:load->video#reload"
+  >
+    <source src="<%= asset_path('hero-bg.mp4') %>" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="hero-overlay">
+    <h1>Helping you make confident property decisions</h1>
+  </div>
+</section>
+
+<section id="why-us" class="homepage-section">
+  <div class="homepage-text">
+    <h2>Why Choose Us?</h2>
+    <p>
+      We are a specialist consultancy offering strategic advice and estate management tailored to your unique needs.
+    </p>
+  </div>
+  <div class="homepage-image">
+    <%= image_tag "why_placeholder.jpg" %>
+  </div>
+</section>
+
+<section id="projects" class="homepage-section">
+  <div class="homepage-image">
+    <%= image_tag "clients.jpg" %>
+  </div>
+  <div class="homepage-text">
+    <h2>Who We Work With</h2>
+    <p>
+      We support public and private sector organisations with estate strategies and end-to-end property services.
+    </p>
+    <%= link_to "View projects →", projects_path, class: "btn-cta" %>
+  </div>
+</section>
+
+<section id="services" class="homepage-section">
+  <div class="homepage-text">
+    <h2>How We Help</h2>
+    <p>
+      We provide expert support for strategy, planning, transactions, and practical delivery—empowering confident decisions.
+    </p>
+    <%= link_to "View services →", services_path, class: "btn-cta" %>
+  </div>
+  <div class="homepage-image">
+    <%= image_tag "services.jpg" %>
+  </div>
+</section>
+
+<section id="about" class="homepage-section">
+  <div class="homepage-image">
+    <%= image_tag "about.jpg" %>
+  </div>
+  <div class="homepage-text">
+    <h2>About</h2>
+    <p>
+      Our team brings decades of experience supporting clients across sectors with strategic, people-first property advice.
+    </p>
+    <%= link_to "Read more →", about_path, class: "btn-cta" %>
+  </div>
+</section>

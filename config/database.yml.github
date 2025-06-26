@@ -1,0 +1,9 @@
+# config/database.yml.github
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: test_db
+  username: postgres
+  password: postgres
+  host: localhost

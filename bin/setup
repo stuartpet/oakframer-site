@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+require "fileutils"
+require "dotenv"
+
+APP_ROOT = File.expand_path("..", __dir__)
+APP_NAME = "your-site-name"
+
+def system!(*args)
+  system(*args, exception: true)
+end
+
+FileUtils.chdir APP_ROOT do
+  puts "== Loading environment =="
+  Dotenv.load if File.exist?(".env")
+
+  puts "== Installing dependencies =="
+  system! "gem install bundler --conservative"
+  system("bundle check") || system!("bundle install")
+
+  puts "\n== Setting up database =="
+  system! "bin/rails db:prepare"
+
+  puts "\n== Removing old logs and tempfiles =="
+  system! "bin/rails log:clear tmp:clear"
+
+  puts "\n== Running linters =="
+  system! "bin/rubocop"
+
+  puts "\n== Running tests =="
+  system! "bin/rails test"
+
+  puts "\n== Restarting application server =="
+  system! "bin/rails restart"
+
+  puts "\n✅ Setup complete. You're ready to go!"
+end
