@@ -1,17 +1,25 @@
-# fly.toml
-app = "oakframer-site"
+app = "oakframer-site" # or your actual Fly.io app name
+
+primary_region = "lhr" # or closest to you (e.g., ams, fra, iad)
 
 [build]
- builder = "heroku/builder:paketo-20"
+  dockerfile = "Dockerfile" # tells Fly to use your custom Dockerfile
 
 [env]
   RAILS_ENV = "production"
-  RAILS_LOG_TO_STDOUT = "true"
-  RAILS_SERVE_STATIC_FILES = "true"
 
-[deploy]
-  release_command = "bin/rails db:prepare"
+[[services]]
+  internal_port = 3000
+  protocol = "tcp"
 
-[experimental]
-  allowed_public_ports = []
-  auto_rollback = true
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [[services.tcp_checks]]
+    interval = "15s"
+    timeout = "2s"
