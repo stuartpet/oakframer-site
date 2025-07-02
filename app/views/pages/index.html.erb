@@ -59,6 +59,8 @@
       <%= form_with url: contact_path, method: :post, local: true, html: { class: "contact-form" } do |f| %>
         <%= f.text_field :name, placeholder: "Your name", required: true %>
         <%= f.email_field :email, placeholder: "Your email", required: true %>
+        <%= f.email_field :telephone, placeholder: "Your contact number", required: true %>
+        <%= f.email_field :location, placeholder: "Your location", required: true %>
         <%= f.text_area :message, rows: 5, placeholder: "Your message", required: true %>
         <%= f.submit "Send Message", class: "btn" %>
       <% end %>

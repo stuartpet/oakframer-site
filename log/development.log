@@ -6772,3 +6772,21 @@ Processing by PagesController#index as HTML
 Completed 200 OK in 12ms (Views: 9.7ms | GC: 0.9ms)
 
 
+Started GET "/" for ::1 at 2025-07-02 19:26:04 +0100
+Processing by PagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 133.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 141.0ms | GC: 0.0ms)
+Completed 200 OK in 356ms (Views: 342.1ms | GC: 24.8ms)
+
+
+Started GET "/" for ::1 at 2025-07-02 19:26:30 +0100
+Processing by PagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 5.1ms | GC: 0.5ms)
+  Rendered layout layouts/application.html.erb (Duration: 13.2ms | GC: 0.9ms)
+Completed 200 OK in 17ms (Views: 15.0ms | GC: 0.9ms)
+
+

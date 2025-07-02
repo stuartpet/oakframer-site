@@ -109,16 +109,16 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'smtp.ionos.co.uk',
+    address:              'smtp.gmail.com',
     port:                 587,
     domain:               'oakframer.co.uk',
-    user_name:            ENV['SMTP_USER'],   # email
-    password:             ENV['SMTP_PASS'],   # email password
-    authentication:       'plain',                # or 'login' — both are accepted
+    user_name:            ENV['SMTP_USER'],        # Gmail address
+    password:             ENV['SMTP_PASS'],        # App Password
+    authentication:       'plain',
     enable_starttls_auto: true
   }
 
-  config.action_mailer.default_url_options = { host: 'www.example.co.uk', protocol: 'https' }
+  config.action_mailer.default_url_options = { host: 'www.oakframer.co.uk', protocol: 'https' }
 
   config.session_store :cookie_store, key: '_site_template_session', secure: Rails.env.production?
 end
