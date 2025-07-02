@@ -6,12 +6,10 @@ class ApplicationController < ActionController::Base
   def log_site_visit
     return unless request.get? # only log page visits
 
-    ip_hash = Digest::SHA256.hexdigest(request.remote_ip)
-
-    SiteVisit.create!(
-      referrer: request.referer,
-      user_agent: request.user_agent,
-      ip_hash: ip_hash
+    SiteVisit.log_visit(
+      request.referer,
+      request.user_agent,
+      request.remote_ip
     )
   end
 

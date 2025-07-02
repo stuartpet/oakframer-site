@@ -8919,9 +8919,8 @@
   // app/javascript/controllers/cookie_banner_controller.js
   var cookie_banner_controller_default = class extends Controller {
     connect() {
-      const consent = localStorage.getItem("cookieConsent");
-      if (!consent) {
-        this.element.style.display = "flex";
+      if (localStorage.getItem("cookieConsent") === "accepted") {
+        this.element.style.display = "none";
       }
     }
     accept() {
@@ -8938,9 +8937,10 @@
   var menu_controller_default = class extends Controller {
     toggle() {
       this.menuTarget.classList.toggle("open");
+      this.overlayTarget.classList.toggle("visible");
     }
   };
-  __publicField(menu_controller_default, "targets", ["menu"]);
+  __publicField(menu_controller_default, "targets", ["button", "overlay", "menu"]);
 
   // app/javascript/controllers/video_reload_controller.js
   var video_reload_controller_default = class extends Controller {
@@ -8989,6 +8989,45 @@
       toggle.addEventListener("click", function() {
         menu.classList.toggle("open");
       });
+    }
+    if (document.querySelector("#project-carousel")) {
+      if (window.Splide && document.getElementById("project-carousel")) {
+        const main = new Splide("#project-carousel", {
+          type: "loop",
+          perPage: 1,
+          autoplay: true,
+          interval: 2e3,
+          pauseOnHover: true,
+          arrows: true,
+          drag: true,
+          pagination: false,
+          // we'll use thumbnails
+          heightRatio: 0.5
+        });
+        const thumbs = new Splide("#project-thumbnails", {
+          fixedWidth: 100,
+          fixedHeight: 64,
+          isNavigation: true,
+          gap: 10,
+          focus: "center",
+          pagination: false,
+          cover: true,
+          arrows: false,
+          drag: true,
+          breakpoints: {
+            600: {
+              fixedWidth: 66,
+              fixedHeight: 40
+            }
+          }
+        });
+        main.sync(thumbs);
+        main.mount();
+        thumbs.mount();
+      }
+    }
+    if (typeof GLightbox !== "undefined") {
+      GLightbox({ selector: ".glightbox" });
     }
   });
 })();

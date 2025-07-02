@@ -3,12 +3,19 @@ class SiteStatsMailer < ApplicationMailer
   require 'csv'
 
   def monthly_report
-    @visits = SiteVisit.where(created_at: 1.month.ago..)
+    visits = SiteVisit.load_data.select do |visit|
+      Time.parse(visit["timestamp"]) >= 1.month.ago
+    end
 
     csv_data = CSV.generate(headers: true) do |csv|
       csv << %w[Referrer UserAgent IPHash Timestamp]
-      @visits.find_each do |visit|
-        csv << [visit.referrer, visit.user_agent, visit.ip_hash, visit.created_at]
+      visits.each do |visit|
+        csv << [
+          visit["referrer"] || "N/A",
+          visit["user_agent"] || "N/A",
+          visit["ip_hash"] || "N/A",
+          visit["timestamp"]
+        ]
       end
     end
 
@@ -19,7 +26,8 @@ class SiteStatsMailer < ApplicationMailer
 
     mail(
       to: ENV.fetch("CONTACT_EMAIL", "example@example.com"),
-      subject: I18n.t('site_visits.subject')
+      subject: "Monthly Site Visit Report"
     )
   end
 end
+

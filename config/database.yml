@@ -79,7 +79,6 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: site_template_production
-  username: site_template
-  password: <%= ENV["SITE_TEMPLATE_DATABASE_PASSWORD"] %>
+  adapter: async
+  database: ":memory:"
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>

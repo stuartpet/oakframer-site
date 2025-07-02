@@ -1,68 +1,67 @@
-<section class="hero" id="top">
-  <video
-    class="hero-video"
-    autoplay
-    muted
-    loop
-    playsinline
-    data-controller="video-reload"
-    data-action="turbo:frame-load->video#reload turbo:load->video#reload"
-  >
-    <source src="<%= asset_path('hero-bg.mp4') %>" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <div class="hero-overlay">
-    <h1>Helping you make confident property decisions</h1>
+<% content_for :title, "Oakframer | Traditional Oak Frame Buildings & Restoration" %>
+<% content_for :meta_description, "Master oak framer in Kent offering bespoke oak buildings, barn conversions, and historic restoration." %>
+<% content_for :meta_keywords, "oak framer, barn conversions, timber restoration, Kent oak buildings" %>
+
+<!-- Hero Section -->
+<section class="hero" style="background-image: url(<%= asset_path 'hero.jpg' %>)">
+  <div class="hero-overlay hero-centered">
+    <div class="hero-tagline">
+      <h1>Master Oak Framer</h1>
+      <p>Specialising in oak buildings and restoration across Kent.</p>
+    </div>
   </div>
 </section>
 
-<section id="why-us" class="homepage-section">
-  <div class="homepage-text">
-    <h2>Why Choose Us?</h2>
-    <p>
-      We are a specialist consultancy offering strategic advice and estate management tailored to your unique needs.
-    </p>
+<!-- Restoration Section -->
+<section id="restoration" class="section">
+  <div class="image-side">
+    <%= image_tag "restoration.jpeg", alt: "Oak restoration" %>
   </div>
-  <div class="homepage-image">
-    <%= image_tag "why_placeholder.jpg" %>
-  </div>
-</section>
-
-<section id="projects" class="homepage-section">
-  <div class="homepage-image">
-    <%= image_tag "clients.jpg" %>
-  </div>
-  <div class="homepage-text">
-    <h2>Who We Work With</h2>
-    <p>
-      We support public and private sector organisations with estate strategies and end-to-end property services.
-    </p>
-    <%= link_to "View projects →", projects_path, class: "btn-cta" %>
+  <div class="text-side">
+    <h2>Oak Restoration</h2>
+    <p>We restore historic timber frames with care and precision, preserving their original character while ensuring long-term strength and durability.</p>
+    <%= link_to "Learn more", restoration_path, class: "btn" %>
   </div>
 </section>
 
-<section id="services" class="homepage-section">
-  <div class="homepage-text">
-    <h2>How We Help</h2>
-    <p>
-      We provide expert support for strategy, planning, transactions, and practical delivery—empowering confident decisions.
-    </p>
-    <%= link_to "View services →", services_path, class: "btn-cta" %>
+<!-- Oak Buildings Section -->
+<section id="oak-buildings" class="section reverse">
+  <div class="image-side">
+    <%= image_tag "oak-building.png", alt: "Oak building" %>
   </div>
-  <div class="homepage-image">
-    <%= image_tag "services.jpg" %>
+  <div class="text-side">
+    <h2>Oak Buildings</h2>
+    <p>From bespoke garden studios to full oak-framed homes, our designs bring timeless elegance and lasting strength to every build.</p>
+    <%= link_to "See our buildings", oak_buildings_path, class: "btn" %>
   </div>
 </section>
 
-<section id="about" class="homepage-section">
-  <div class="homepage-image">
-    <%= image_tag "about.jpg" %>
+<!-- Projects Preview -->
+<section id="projects" class="section">
+  <div class="image-side">
+    <%= image_tag "projects/project1.png", alt: "Recent project" %>
   </div>
-  <div class="homepage-text">
-    <h2>About</h2>
-    <p>
-      Our team brings decades of experience supporting clients across sectors with strategic, people-first property advice.
-    </p>
-    <%= link_to "Read more →", about_path, class: "btn-cta" %>
+  <div class="text-side">
+    <h2>Recent Projects</h2>
+    <p>Take a look at some of our featured work across the UK.</p>
+    <%= link_to "View all projects", projects_path, class: "btn" %>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+  <div class="contact-wrapper">
+    <h2>Contact Us</h2>
+    <p>We’re always happy to answer any questions you may have. If you have a new project in mind or would like to restore an existing property, feel free to give us a call or send us an email.</p>
+    <p class="phone">📞 CALL <a href="tel:07882158708">07882 158708</a></p>
+
+    <div class="contact-form-wrapper">
+      <%= form_with url: contact_path, method: :post, local: true, html: { class: "contact-form" } do |f| %>
+        <%= f.text_field :name, placeholder: "Your name", required: true %>
+        <%= f.email_field :email, placeholder: "Your email", required: true %>
+        <%= f.text_area :message, rows: 5, placeholder: "Your message", required: true %>
+        <%= f.submit "Send Message", class: "btn" %>
+      <% end %>
+    </div>
   </div>
 </section>

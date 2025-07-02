@@ -9,12 +9,12 @@
 //= link services.mp4
 //= link homes-england.jpg
 //= link liverpool.jpg
-//= link logo-placeholder.jpg
-//= link about-hero.jpg
+//= link oakframer-logo.png
+//= link hero.jpg
 //= link clients.jpg
 //= link why_placeholder.jpg
 //= link inefficient-space.jpg
 //= link hybrid-workforce.jpg
 //= link cost-pressure.jpg
 //= link change.jpg
-//= link service-summary.jpg
+//= link services-framing.png

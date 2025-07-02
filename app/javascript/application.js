@@ -36,6 +36,48 @@ document.addEventListener("turbo:load", function () {
             menu.classList.toggle("open");
         });
     }
+
+    if (document.querySelector('#project-carousel')) {
+        if (window.Splide && document.getElementById('project-carousel')) {
+            const main = new Splide('#project-carousel', {
+                type: 'loop',
+                perPage: 1,
+                autoplay: true,
+                interval: 2000,
+                pauseOnHover: true,
+                arrows: true,
+                drag: true,
+                pagination: false, // we'll use thumbnails
+                heightRatio: 0.5,
+            });
+
+            const thumbs = new Splide('#project-thumbnails', {
+                fixedWidth: 100,
+                fixedHeight: 64,
+                isNavigation: true,
+                gap: 10,
+                focus: 'center',
+                pagination: false,
+                cover: true,
+                arrows: false,
+                drag: true,
+                breakpoints: {
+                    600: {
+                        fixedWidth: 66,
+                        fixedHeight: 40,
+                    },
+                },
+            });
+
+            main.sync(thumbs);
+            main.mount();
+            thumbs.mount();
+        }
+    }
+
+    if (typeof GLightbox !== "undefined") {
+        GLightbox({ selector: ".glightbox" });
+    }
 });
 
 

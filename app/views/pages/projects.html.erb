@@ -1,0 +1,51 @@
+<% content_for :title, "Recent Projects | Oakframer – Bespoke Timber Frame Work in Kent" %>
+<% content_for :meta_description, "Explore our latest oak framing projects including barn conversions, restorations, and bespoke timber buildings across Kent." %>
+<% content_for :meta_keywords, "oak framing projects, timber frame, barn conversions, restoration work, oak buildings, Kent" %>
+
+<section class="page-header">
+  <h1>Oak Framing Projects</h1>
+  <p>A selection of recent restoration, new build and bespoke oak work by our team</p>
+</section>
+
+<section class="page-content">
+  <p>We are proud to share some of our recent projects to showcase the quality and craftsmanship that go into each and every oak framed structure we design and build. From complex restoration projects and listed buildings to striking new builds, we bring deep knowledge and care to every stage of the process.</p>
+
+  <p>Each project is unique, and our gallery reflects the breadth of work we undertake – from barn conversions and residential homes to garages, garden rooms, and commercial oak-framed buildings. Our specialist team of oak frame experts is involved at every step, ensuring a beautifully finished result tailored to the property, site, and client needs.</p>
+
+
+  <div class="carousel-wrapper">
+    <div id="project-carousel" class="splide">
+      <div class="splide__track">
+        <ul class="splide__list">
+          <% Dir.glob(Rails.root.join("app/assets/images/projects/*.{png,jpg,jpeg,webp}")).sort.each do |file| %>
+            <% image_name = File.basename(file) %>
+            <li class="splide__slide">
+              <a href="<%= asset_path("projects/#{image_name}") %>" class="glightbox">
+                <%= image_tag "projects/#{image_name}", alt: "Oak frame project", class: "carousel-image" %>
+              </a>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="project-thumbnails" class="splide thumbnails">
+    <div class="splide__track">
+      <ul class="splide__list">
+        <% Dir.glob(Rails.root.join("app/assets/images/projects/*.{png,jpg,jpeg,webp}")).sort.each do |file| %>
+          <% image_name = File.basename(file) %>
+          <li class="splide__slide">
+            <img src="<%= asset_path("projects/#{image_name}") %>" alt="Project thumbnail" class="thumbnail-image">
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<div class="project-cta">
+  <h2>Looking to start your own project?</h2>
+  <%= link_to "Get in touch", root_path(anchor: "contact"), class: "btn", style: "margin-top: 2rem;" %>
+</div>

@@ -8,6 +8,6 @@
   },
   "scripts": {
     "build": "esbuild app/javascript/application.js --bundle --target=es2015 --format=iife --outdir=app/assets/builds"
-
-  }
+  },
+  "packageManager": "yarn@1.22.22"
 }

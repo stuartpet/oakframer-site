@@ -1,60 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title><%= content_for?(:title) ? yield(:title) : "placeholder" %></title>
+  <title><%= content_for?(:title) ? yield(:title) : "Oakframer | Master Oak Framer in Kent" %></title>
+  <meta name="description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : "Experts in oak framing, restoration, and barn conversions across Kent." %>">
+  <meta name="keywords" content="<%= content_for?(:meta_keywords) ? yield(:meta_keywords) : "oak framing, restoration, barn conversions, Kent, timber buildings" %>">
+  <meta name="author" content="Oakframer">
+
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <%= favicon_link_tag 'favicon.png', type: 'image/png' %>
-
   <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/css/splide.min.css" %>
+  <%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" %>
   <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  <%= javascript_include_tag "https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js", defer: true %>
+  <%= javascript_include_tag "https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/js/splide.min.js", defer: true %>
 
+  <!-- Google Fonts -->
+  <link rel="preload" href="<%= asset_path('oakframer-logo.png') %>" as="image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-<header class="navbar">
-  <nav class="nav-container" data-controller="menu">
-    <div class="logo">
-      <%= image_tag "logo-placeholder.jpg", alt: "Site Logo" %>
-    </div>
 
-    <!-- Burger button -->
-    <div class="burger-menu" data-action="click->menu#toggle" data-menu-target="button">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+<!-- Mobile menu overlay -->
+<div class="mobile-menu-overlay" data-menu-target="overlay" data-action="click->menu#toggle"></div>
 
-    <!-- Navbar links -->
-    <div class="navbar-links" data-menu-target="menu">
-      <%= link_to "Home", root_path(anchor: "home") %>
-      <%= link_to "About", root_path(anchor: "about") %>
-      <%= link_to "Services", root_path(anchor: "services") %>
-      <%= link_to "Projects", root_path(anchor: "projects") %>
-      <%= link_to "Contact", contacts_path %>
-    </div>
+<!-- LinkedIn icon -->
+<div class="navbar-right">
+  <%= link_to " ", "https://www.linkedin.com/in/kate-mullins-4209719/", target: "_blank", rel: "noopener", class: "linkedin-icon" %>
+</div>
 
-    <div class="mobile-menu-overlay" data-menu-target="overlay" data-action="click->menu#toggle"></div>
+<!-- Navbar -->
+<nav class="navbar" data-controller="menu">
+  <div class="navbar-left">
+    <%= link_to image_tag("oakframer-logo.png", alt: "Oakframer Logo", class: "navbar-logo"), root_path %>
+  </div>
 
-    <div class="navbar-right">
-      <%= link_to " ", "https://www.linkedin.com/in/kate-mullins-4209719/", target: "_blank", rel: "noopener", class: "linkedin-icon" %>
-    </div>
-  </nav>
-</header>
+  <!-- Burger button -->
+  <div class="burger-menu" data-action="click->menu#toggle" data-menu-target="button">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Nav links -->
+  <div class="navbar-links" data-menu-target="menu">
+    <%= link_to "Home", root_path %>
+    <%= link_to "Restoration", root_path(anchor: "restoration") %>
+    <%= link_to "Oak Buildings", root_path(anchor: "oak-buildings") %>
+    <%= link_to "Projects", root_path(anchor: "projects") %>
+    <%= link_to "Contact", root_path(anchor: "contact") %>
+  </div>
+</nav>
 
 <main>
   <%= yield %>
 </main>
 
 <footer class="footer">
-  <p>&copy; <%= Time.current.year %> placeholder. All rights reserved.</p>
+  <p>&copy; 2020 Mark Groombridge – Master Oak Framer • All rights reserved •
+    <%= link_to "Privacy Policy", privacy_path, class: "footer-link" %></p>
   <p class="footer-note">Created with care by Studio P Design</p>
-  <%= link_to "Privacy Statement", privacy_path, class: "footer-link" %>
 </footer>
 
 <div id="cookie-banner" data-controller="cookie-banner" class="cookie-banner">
@@ -66,7 +77,5 @@
     </div>
   </div>
 </div>
-
-<a href="#" class="scroll-to-top" data-action="click->scroll#toTop">↑</a>
 </body>
 </html>
