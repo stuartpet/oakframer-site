@@ -111,9 +111,9 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:              'smtp.ionos.co.uk',
     port:                 587,
-    domain:               'example.com',
-    user_name:            ENV['SMTP_USER'],   # your IONOS email
-    password:             ENV['SMTP_PASS'],   # your IONOS email password
+    domain:               'oakframer.co.uk',
+    user_name:            ENV['SMTP_USER'],   # email
+    password:             ENV['SMTP_PASS'],   # email password
     authentication:       'plain',                # or 'login' — both are accepted
     enable_starttls_auto: true
   }

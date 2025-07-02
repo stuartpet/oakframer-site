@@ -2,7 +2,7 @@
 app = "oakframer-site"
 
 [build]
-  builder = "heroku/buildpacks:20"
+ builder = "heroku/builder:paketo-20"
 
 [env]
   RAILS_ENV = "production"
