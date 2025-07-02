@@ -52,7 +52,7 @@ jobs:
           name: Deploy to Fly.io
           command: |
             source $BASH_ENV
-            fly auth token "$FLY_API_TOKEN"
+            fly auth login --access-token "$FLY_API_TOKEN"
             fly deploy --remote-only
 
 workflows:
