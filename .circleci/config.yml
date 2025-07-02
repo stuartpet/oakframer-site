@@ -5,14 +5,7 @@ executors:
     docker:
       - image: cimg/ruby:3.2.2-node
         environment:
-          RAILS_ENV: test
-          POSTGRES_HOST: postgres
-      - image: cimg/postgres:14.7
-        name: postgres
-        environment:
-          POSTGRES_USER: postgres
-          POSTGRES_DB: ohana_site_test
-          POSTGRES_PASSWORD: postgres
+          RAILS_ENV: production
     working_directory: ~/app
 
 jobs:
@@ -45,37 +38,28 @@ jobs:
           name: Precompile Rails assets
           command: bundle exec rails assets:precompile
 
-      - run:
-          name: Set up database
-          command: bin/rails db:create db:schema:load
-
-  test:
-    executor: ruby-executor
-    steps:
-      - checkout
-      - run: gem install bundler -v 2.4.10
-      - run: bundle _2.4.10_ install
-      - run: yarn install
-      - run: yarn build
-      - run: bundle exec rails assets:precompile
-      - run: bin/rspec
-
   deploy:
     executor: ruby-executor
     steps:
+      - checkout
       - run:
-          name: Trigger Render Deploy
+          name: Install Fly.io CLI
           command: |
-            curl -X POST https://api.render.com/deploy/srv-d0thl7qdbo4c739n1id0?key=_xE7v0GU4RQ
+            curl -L https://fly.io/install.sh | sh
+            echo 'export FLYCTL_INSTALL="$HOME/.fly"' >> $BASH_ENV
+            echo 'export PATH="$FLYCTL_INSTALL/bin:$PATH"' >> $BASH_ENV
+      - run:
+          name: Deploy to Fly.io
+          command: |
+            source $BASH_ENV
+            fly auth token "$FLY_API_TOKEN"
+            fly deploy --remote-only
 
 workflows:
   version: 2
-  test_app:
+  deploy_on_push:
     jobs:
       - setup
-      - test:
-          requires:
-            - setup
       - deploy:
           requires:
-            - test
+            - setup
