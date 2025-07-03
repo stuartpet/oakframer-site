@@ -3,7 +3,7 @@ app = "oakframer-site" # or your actual Fly.io app name
 primary_region = "lhr" # or closest to you (e.g., ams, fra, iad)
 
 [build]
-  dockerfile = "Dockerfile" # tells Fly to use your custom Dockerfile
+  dockerfile = "Dockerfile"
 
 [env]
   RAILS_ENV = "production"

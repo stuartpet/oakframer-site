@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../javascript/coming_soon.js"],
+  "sourcesContent": ["document.addEventListener(\"DOMContentLoaded\", () => {\n    const el = document.getElementById(\"type-text\");\n    const message = \"Coming Soon...\";\n    let i = 0;\n\n    function typeWriter() {\n        if (i < message.length) {\n            el.textContent += message.charAt(i);\n            i++;\n            setTimeout(typeWriter, 120);\n        } else {\n            el.style.borderRight = \"none\";\n        }\n    }\n\n    if (el) {\n        el.style.width = message.length + \"ch\";\n        typeWriter();\n    }\n});\n"],
+  "mappings": ";AAAA,SAAS,iBAAiB,oBAAoB,MAAM;AAChD,QAAM,KAAK,SAAS,eAAe,WAAW;AAC9C,QAAM,UAAU;AAChB,MAAI,IAAI;AAER,WAAS,aAAa;AAClB,QAAI,IAAI,QAAQ,QAAQ;AACpB,SAAG,eAAe,QAAQ,OAAO,CAAC;AAClC;AACA,iBAAW,YAAY,GAAG;AAAA,IAC9B,OAAO;AACH,SAAG,MAAM,cAAc;AAAA,IAC3B;AAAA,EACJ;AAEA,MAAI,IAAI;AACJ,OAAG,MAAM,QAAQ,QAAQ,SAAS;AAClC,eAAW;AAAA,EACf;AACJ,CAAC;",
+  "names": []
+}
